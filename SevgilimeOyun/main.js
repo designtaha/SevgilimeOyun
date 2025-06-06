@@ -1,8 +1,15 @@
 const candlesContainer = document.querySelector(".candles");
 
+// 4 mum oluşturuyoruz
 for (let i = 0; i < 4; i++) {
   const candle = document.createElement("div");
   candle.classList.add("candle");
+
+  // Mumun üstüne alev (flame) ekle
+  const flame = document.createElement("div");
+  flame.classList.add("flame");
+  candle.appendChild(flame);
+
   candlesContainer.appendChild(candle);
 }
 
@@ -22,6 +29,7 @@ function blowCandles() {
   }, 3000);
 }
 
+// Mumların söndüğü animasyon keyframes'ini ekliyoruz
 const style = document.createElement('style');
 style.innerHTML = `
   @keyframes blowOut {
