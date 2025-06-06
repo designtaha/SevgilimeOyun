@@ -23,13 +23,19 @@
       border: 5px solid #333;
     }
     .house {
-      background: #ffcc70;
-      border: 2px solid #996633;
-      border-radius: 8px;
+      background-image: url('assets/img/house.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: black;
+      font-weight: bold;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px white;
+      cursor: default;
+      user-select: none;
     }
     .player {
       width: 40px;
@@ -51,6 +57,9 @@
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.3);
       display: none;
+      max-width: 80vw;
+      max-height: 80vh;
+      overflow-y: auto;
     }
     .popup h2 {
       margin-top: 0;
@@ -88,17 +97,36 @@
 
   <div class="popup" id="popup">
     <h2>Bu ayki anılar 💕</h2>
-    <p>Buraya Ocak/Şubat vs. için fotoğraflar, yazılar gelecek.</p>
+    <div id="photoContainer">
+      <!-- Fotoğraflar buraya JS ile eklenecek -->
+    </div>
     <button class="close-btn" onclick="closePopup()">Kapat</button>
   </div>
 
   <script>
     const player = document.getElementById("player");
     const popup = document.getElementById("popup");
+    const photoContainer = document.getElementById("photoContainer");
 
     const gridSize = 150; // 600 / 4 = 150px kare
     let x = 0;
     let y = 0;
+
+    // Her ay için 4 fotoğraf dosya isimleri örnek (assets/img/ocak1.png gibi)
+    const photosByMonth = {
+      "Ocak": ["ocak1.png", "ocak2.png", "ocak3.png", "ocak4.png"],
+      "Şubat": ["subat1.png", "subat2.png", "subat3.png", "subat4.png"],
+      "Mart": ["mart1.png", "mart2.png", "mart3.png", "mart4.png"],
+      "Nisan": ["nisan1.png", "nisan2.png", "nisan3.png", "nisan4.png"],
+      "Mayıs": ["mayis1.png", "mayis2.png", "mayis3.png", "mayis4.png"],
+      "Haziran": ["haziran1.png", "haziran2.png", "haziran3.png", "haziran4.png"],
+      "Temmuz": ["temmuz1.png", "temmuz2.png", "temmuz3.png", "temmuz4.png"],
+      "Ağustos": ["agustos1.png", "agustos2.png", "agustos3.png", "agustos4.png"],
+      "Eylül": ["eylul1.png", "eylul2.png", "eylul3.png", "eylul4.png"],
+      "Ekim": ["ekim1.png", "ekim2.png", "ekim3.png", "ekim4.png"],
+      "Kasım": ["kasim1.png", "kasim2.png", "kasim3.png", "kasim4.png"],
+      "Aralık": ["aralik1.png", "aralik2.png", "aralik3.png", "aralik4.png"]
+    };
 
     function updatePlayerPosition() {
       player.style.left = x * gridSize + "px";
@@ -106,6 +134,23 @@
     }
 
     function openPopup() {
+      const monthIndex = y * 4 + x; // 0-11 index hesaplama
+      const monthName = document.querySelectorAll(".house")[monthIndex].textContent;
+
+      photoContainer.innerHTML = ""; // önceki fotoğrafları temizle
+
+      if(photosByMonth[monthName]){
+        photosByMonth[monthName].forEach(photo => {
+          const img = document.createElement("img");
+          img.src = `assets/img/${photo}`;
+          img.style.width = "100px";
+          img.style.margin = "5px";
+          photoContainer.appendChild(img);
+        });
+      } else {
+        photoContainer.textContent = "Fotoğraf yok.";
+      }
+
       popup.style.display = "block";
     }
 
@@ -115,10 +160,10 @@
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight" && x < 3) x++;
-      if (e.key === "ArrowLeft" && x > 0) x--;
-      if (e.key === "ArrowDown" && y < 2) y++;
-      if (e.key === "ArrowUp" && y > 0) y--;
-      if (e.key === "Enter" || e.key === "e") openPopup();
+      else if (e.key === "ArrowLeft" && x > 0) x--;
+      else if (e.key === "ArrowDown" && y < 2) y++;
+      else if (e.key === "ArrowUp" && y > 0) y--;
+      else if (e.key.toLowerCase() === "e") openPopup();
 
       updatePlayerPosition();
     });
