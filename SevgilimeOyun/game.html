@@ -112,21 +112,21 @@
     let x = 0;
     let y = 0;
 
-    // Her ay için 4 fotoğraf dosya isimleri örnek (assets/img/ocak1.png gibi)
-    const photosByMonth = {
-      "Ocak": ["ocak1.png", "ocak2.png", "ocak3.png", "ocak4.png"],
-      "Şubat": ["subat1.png", "subat2.png", "subat3.png", "subat4.png"],
-      "Mart": ["mart1.png", "mart2.png", "mart3.png", "mart4.png"],
-      "Nisan": ["nisan1.png", "nisan2.png", "nisan3.png", "nisan4.png"],
-      "Mayıs": ["mayis1.png", "mayis2.png", "mayis3.png", "mayis4.png"],
-      "Haziran": ["haziran1.png", "haziran2.png", "haziran3.png", "haziran4.png"],
-      "Temmuz": ["temmuz1.png", "temmuz2.png", "temmuz3.png", "temmuz4.png"],
-      "Ağustos": ["agustos1.png", "agustos2.png", "agustos3.png", "agustos4.png"],
-      "Eylül": ["eylul1.png", "eylul2.png", "eylul3.png", "eylul4.png"],
-      "Ekim": ["ekim1.png", "ekim2.png", "ekim3.png", "ekim4.png"],
-      "Kasım": ["kasim1.png", "kasim2.png", "kasim3.png", "kasim4.png"],
-      "Aralık": ["aralik1.png", "aralik2.png", "aralik3.png", "aralik4.png"]
-    };
+   // Haziran'dan Mayıs'a ayarlanmış fotoğraf isimleri
+const photosByMonth = {
+  "Haziran": ["haziran1.png", "haziran2.png", "haziran3.png", "haziran4.png"],
+  "Temmuz": ["temmuz1.png", "temmuz2.png", "temmuz3.png", "temmuz4.png"],
+  "Ağustos": ["agustos1.png", "agustos2.png", "agustos3.png", "agustos4.png"],
+  "Eylül": ["eylul1.png", "eylul2.png", "eylul3.png", "eylul4.png"],
+  "Ekim": ["ekim1.png", "ekim2.png", "ekim3.png", "ekim4.png"],
+  "Kasım": ["kasim1.png", "kasim2.png", "kasim3.png", "kasim4.png"],
+  "Aralık": ["aralik1.png", "aralik2.png", "aralik3.png", "aralik4.png"],
+  "Ocak": ["ocak1.png", "ocak2.png", "ocak3.png", "ocak4.png"],
+  "Şubat": ["subat1.png", "subat2.png", "subat3.png", "subat4.png"],
+  "Mart": ["mart1.png", "mart2.png", "mart3.png", "mart4.png"],
+  "Nisan": ["nisan1.png", "nisan2.png", "nisan3.png", "nisan4.png"],
+  "Mayıs": ["mayis1.png", "mayis2.png", "mayis3.png", "mayis4.png"]
+};
 
     function updatePlayerPosition() {
       player.style.left = x * gridSize + "px";
